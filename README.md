@@ -53,10 +53,16 @@ Pas de databasegegevens aan in het bestand connection.php zodat deze overeenkome
 2. Importeer `import.sql` in je MySQL/MariaDB en controleer of de database `gamerev` aanwezig is.
 3. Pas `connection.php` aan met je database-credentials.
 4. Open `http://localhost/gamerev2/index.php` in je browser.
-5. Maak een account via `make_account.php`, log in en maak posts via `add_post.php`.
-6. Like een post met de like-knop; likes worden geteld in de `post_likes` tabel.
+5. Maak een account via `make_account.php`
+   <img width="1920" height="869" alt="image" src="https://github.com/user-attachments/assets/2bd15f3e-a439-4637-95e7-d6e15a5877b4" />
+
+7. log in en maak posts via `add_post.php`.
+   <img width="1920" height="863" alt="image" src="https://github.com/user-attachments/assets/f103461c-53a3-4e20-b3ac-7904ca51974d" />
+
+9. Like een post met de like-knop; likes worden geteld in de `post_likes` tabel.
 
 Opmerkingen:
 - De weergegeven like-aantallen worden berekend uit de `post_likes` tabel (autoritatieve bron).
 - Bij het verwijderen van een gebruiker of post worden de bijbehorende likes automatisch verwijderd (FOREIGN KEY ... ON DELETE CASCADE).
 - Als je de pagina in een browser opslaat als HTML, vermijd spaties in bestandsnamen (bijv. `All%20Posts%20-%20GameRev_files/...`) of gebruik percent-encoding, anders kunnen sommige validators fouten melden over spaties in `href`-attributen.
+

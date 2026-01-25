@@ -25,10 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
         }
-        .card-header h4 {
+        .card-header h1 {
             margin: 0;
             font-weight: bold;
         }
@@ -92,14 +90,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container mt-5">
     <div class="card shadow mx-auto" style="max-width: 400px;">
         <div class="card-header text-white text-center py-3">
-            <h4>GameRev Login</h4>
+            <h1 class="h4">GameRev Login</h1>
         </div>
         <div class="card-body px-4 py-4 text-white">
             <?php if (isset($_SESSION['error'])): ?>
-                <div class="alert alert-danger"><?= htmlspecialchars($_SESSION['error']) ?></div>
+                <div class="alert alert-danger"><?php echo htmlspecialchars($_SESSION['error']); ?></div>
             <?php endif; ?>
 
-            <form method="POST">
+            <form method="post" action="">
                 <div class="mb-3">
                     <label for="username" class="form-label">Gebruikersnaam</label>
                     <input type="text" name="username" id="username" class="form-control" required>

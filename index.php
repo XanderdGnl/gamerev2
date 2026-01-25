@@ -11,7 +11,7 @@ $categories = $categoryStmt->fetchAll(PDO::FETCH_COLUMN);
 
 $selectedCategory = $_GET['category'] ?? '';
 
-    if (!empty($selectedCategory)) {
+if (!empty($selectedCategory)) {
     $stmt = $pdo->prepare("
         SELECT
             posts.id,
@@ -47,11 +47,11 @@ $selectedCategory = $_GET['category'] ?? '';
 
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Posts - GameRev</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -105,6 +105,16 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .filter-form select {
             width: 200px;
         }
+        .form-select {
+            background-color: #1c1f2e;
+            border: 1px solid #444;
+            color: #f8f9fa;
+        }
+        .form-select:focus {
+            background-color: #1c1f2e;
+            border-color: #007bff;
+            color: #f8f9fa;
+        }
     </style>
 </head>
 <body>
@@ -118,14 +128,13 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h1 class="header-title h3">Alle Game Posts</h1>
     </header>
 
-    <!-- Categorie Filter -->
-    <form method="GET" class="mb-4 filter-form">
+    <form method="get" class="mb-4 filter-form">
         <label for="category" class="form-label">Filter op categorie:</label>
         <select name="category" id="category" class="form-select d-inline w-auto me-2" onchange="this.form.submit()">
             <option value="">-- Alle categorieën --</option>
             <?php foreach ($categories as $category): ?>
-                <option value="<?= htmlspecialchars($category) ?>" <?= $category === $selectedCategory ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($category) ?>
+                <option value="<?php echo htmlspecialchars($category); ?>"<?php echo $category === $selectedCategory ? ' selected' : ''; ?>>
+                    <?php echo htmlspecialchars($category); ?>
                 </option>
             <?php endforeach; ?>
         </select>
@@ -136,23 +145,23 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="alert alert-info text-center">Geen posts gevonden in deze categorie.</div>
     <?php else: ?>
         <?php foreach ($posts as $post): ?>
-            <div class="card mb-4 shadow-lg">
+            <article class="card mb-4 shadow-lg">
                 <div class="card-body">
-                    <h4 class="card-title"><?= htmlspecialchars($post['post_title']) ?></h4>
-                    <h6 class="card-subtitle mb-3">
-                        <strong><?= htmlspecialchars($post['username']) ?></strong> |
-                        Categorie: <span class="text-info"><?= htmlspecialchars($post['category']) ?></span> |
-                        Rating: <span class="text-info"><?= htmlspecialchars($post['rating']) ?></span>/5 ⭐ |
-                        <small><?= date("F j, Y, g:i a", strtotime($post['created_at'])) ?></small>
-                    </h6>
-                    <p class="card-text"><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+                    <h2 class="card-title"><?php echo htmlspecialchars($post['post_title']); ?></h2>
+                    <p class="card-subtitle mb-3">
+                        <strong><?php echo htmlspecialchars($post['username']); ?></strong> |
+                        Categorie: <span class="text-info"><?php echo htmlspecialchars($post['category']); ?></span> |
+                        Rating: <span class="text-info"><?php echo htmlspecialchars($post['rating']); ?></span>/5 ⭐ |
+                        <small><?php echo date("F j, Y, g:i a", strtotime($post['created_at'])); ?></small>
+                    </p>
+                    <p class="card-text"><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
 
-                    <form method="POST" action="like_post.php" class="mt-3 d-inline">
-                        <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                        <button type="submit" class="btn btn-primary">👍 Like (<?= $post['likes_count'] ?>)</button>
+                    <form method="post" action="like_post.php" class="mt-3 d-inline">
+                        <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                        <button type="submit" class="btn btn-primary">👍 Like (<?php echo $post['likes_count']; ?>)</button>
                     </form>
                 </div>
-            </div>
+            </article>
         <?php endforeach; ?>
     <?php endif; ?>
 </div>

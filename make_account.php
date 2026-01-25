@@ -27,12 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maak Account - GameRev</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -50,6 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             background: linear-gradient(135deg, #198754, #20c997);
             border-radius: 1rem 1rem 0 0;
         }
+        .card-header h1 {
+            margin: 0;
+            font-weight: bold;
+        }
         .form-control {
             background-color: #1c1f2e;
             border: 1px solid #444;
@@ -58,6 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         .form-control:focus {
             border-color: #20c997;
             box-shadow: none;
+            background-color: #1c1f2e;
+            color: #f8f9fa;
         }
         .btn-success {
             background-color: #20c997;
@@ -69,6 +74,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         a {
             color: #0d6efd;
         }
+        a:hover {
+            text-decoration: underline;
+        }
+        .alert-danger {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -76,14 +89,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="container mt-5">
     <div class="card shadow mx-auto" style="max-width: 420px;">
         <div class="card-header text-white text-center py-3">
-            <h4>Maak een Account</h4>
+            <h1 class="h4">Maak een Account</h1>
         </div>
         <div class="card-body px-4 py-4 text-white">
             <?php if (!empty($error)): ?>
-                <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+                <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
 
-            <form method="POST">
+            <form method="post" action="">
                 <div class="mb-3">
                     <label for="username" class="form-label">Gebruikersnaam</label>
                     <input type="text" name="username" class="form-control" id="username" required>

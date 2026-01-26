@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="alert alert-danger"><?php echo htmlspecialchars($_SESSION['error']); ?></div>
             <?php endif; ?>
 
-            <form method="post" action="">
+            <form method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Gebruikersnaam</label>
                     <input type="text" name="username" id="username" class="form-control" required>
@@ -120,3 +120,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </body>
 </html>
+

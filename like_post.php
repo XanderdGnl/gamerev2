@@ -4,7 +4,6 @@ require_once 'session.php';
 
 requireLogin();
 
-// 1. Initialize the base redirect path
 $redirectUrl = "index.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'])) {
@@ -28,3 +27,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'])) {
 
 header("Location: " . $redirectUrl);
 exit;
+
